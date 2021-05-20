@@ -2,7 +2,7 @@
     <a href="https://dromara.org"><img src="https://dromara.org/img/logo/soul.png" width="45%"></a>
 </p>
 <p align="center">
-  <strong>可扩展，高性能，响应式的 API 网关</strong>
+  <strong>应用于所有微服务场景的，可扩展、高性能、响应式的 API 网关解决方案</strong>
 </p>
 <p align="center">
   <a href="https://dromara.org">https://dromara.org/</a>
@@ -13,7 +13,7 @@
 </p>
 
 <p align="center">
-    <a target="_blank" href="http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.dromara%22%20AND%soul">
+    <a target="_blank" href="https://search.maven.org/search?q=g:org.dromara%20AND%20a:soul">
         <img src="https://img.shields.io/maven-central/v/org.dromara/soul.svg?label=maven%20central" />
     </a>
     <a target="_blank" href="https://github.com/Dromara/soul/blob/master/LICENSE">
@@ -22,14 +22,14 @@
     <a target="_blank" href="https://www.oracle.com/technetwork/java/javase/downloads/index.html">
         <img src="https://img.shields.io/badge/JDK-8+-green.svg" />
     </a>
-    <a target="_blank" href="https://github.com/dromara/soul">
+    <a target="_blank" href="https://github.com/dromara/soul/actions">
         <img src="https://github.com/dromara/soul/workflows/ci/badge.svg" />
     </a>
     <a href="https://www.codacy.com/app/yu199195/soul?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Dromara/soul&amp;utm_campaign=Badge_Grade">
         <img src="https://api.codacy.com/project/badge/Grade/4367ffad5b434b7e8078b3a68cc6398d"/>
     </a>
-    <a target="_blank" href='https://gitee.com/shuaiqiyu/soul/stargazers'>
-        <img src='https://gitee.com/shuaiqiyu/soul/badge/star.svg?theme=gvp' alt='gitee stars'/>
+    <a target="_blank" href='https://gitee.com/dromara/soul/stargazers'>
+        <img src='https://gitee.com/dromara/soul/badge/star.svg?theme=gvp' alt='gitee stars'/>
    </a>
    <a target="_blank" href='https://github.com/dromara/soul'>
         <img src="https://img.shields.io/github/forks/dromara/soul.svg" alt="github forks"/>
@@ -65,36 +65,40 @@
 
 # 模块
 
- * soul-admin : 插件和其他信息配置的管理后台
+ * shenyu-admin : 插件和其他信息配置的管理后台
 
- * soul-bootstrap : 用于启动项目，用户可以参考
+ * shenyu-bootstrap : 用于启动项目，用户可以参考
 
- * soul-client : 用户可以使用 Spring MVC，Dubbo，Spring Cloud 快速访问
+ * shenyu-client : 用户可以使用 Spring MVC，Dubbo，Spring Cloud 快速访问
+ 
+ * shenyu-disruptor : 基于disruptor的封装
   
- * soul-common : 框架的通用类
+ * shenyu-register-center : shenyu-client提供各种rpc接入注册中心的支持
+  
+ * shenyu-common : 框架的通用类
 
- * soul-dist : 构建项目
+ * shenyu-dist : 构建项目
 
- * soul-metrics : prometheus（普罗米修斯）实现的 metrics
+ * shenyu-metrics : prometheus（普罗米修斯）实现的 metrics
 
- * soul-plugin : Soul 支持的插件集合
+ * shenyu-plugin : ShenYu 支持的插件集合
 
- * soul-spi : 定义 Soul spi
+ * shenyu-spi : 定义 ShenYu spi
 
- * soul-spring-boot-starter : 支持 spring boot starter
+ * shenyu-spring-boot-starter : 支持 spring boot starter
 
- * soul-sync-data-center : 提供 ZooKeeper，HTTP，WebSocket，Nacos 的方式同步数据
+ * shenyu-sync-data-center : 提供 ZooKeeper，HTTP，WebSocket，Nacos 的方式同步数据
 
- * soul-examples : RPC 示例项目
+ * shenyu-examples : RPC 示例项目
 
- * soul-web : 包括插件、请求路由和转发等的核心处理包
+ * shenyu-web : 包括插件、请求路由和转发等的核心处理包
 
 --------------------------------------------------------------------------------
 
 # 功能特点
 
-   * 提供了诸如限流、熔断、转发和路由监控等插件；
-   * 与 HTTP、RESTful、WebSocket、Dubbo 和 Spring Cloud 无缝对接；
+   * 提供了诸如限流、熔断、转发 、重写、重定向、和路由监控等插件；
+   * 支持 HTTP、RESTFul、WebSocket、Dubbo、 GRPC、 Tars、 Spring Cloud 代理；
    * 支持热插拔，用户可以定制化开发；
    * 为了灵活的适配，选择器和规则可以动态的适配；
    * 支持集群部署；
@@ -104,15 +108,15 @@
 
 # 插件
 
-无论请求何时进入，Soul 会通过响应链执行所有已打开的插件。
+无论请求何时进入，ShenYu 会通过响应链执行所有已打开的插件。
 
-插件是 Soul 的灵魂，并且插件也是可扩展和热插拔的。
+插件是 ShenYu 的灵魂，并且插件也是可扩展和热插拔的。
 
 不同的插件实现不同的功能。
 
 当然，用户也可以定制化插件去满足他们自己的需求。
 
-如果你有定制化插件的需求，请参看这里：[plugin-extend](https://dromara.org/website/zh-cn/docs/soul/extend.html)
+如果你有定制化插件的需求，请参看这里：[custom-plugin](https://dromara.org/zh/projects/soul/custom-plugin/)
 
 --------------------------------------------------------------------------------
 
@@ -132,7 +136,7 @@
 
 所有的数据都被缓存在 JVM 的 ConcurrentHashMap 中，所以它非常快。
 
-当用户在后台界面改变配置信息时，Soul 通过监听 ZooKeeper node，WebSocket push，HTTP longPull 来动态更新缓存。
+当用户在后台界面改变配置信息时，ShenYu 通过监听 ZooKeeper node，WebSocket push，HTTP longPull 来动态更新缓存。
 
   ![](https://yu199195.github.io/images/soul/soul-config-processor.png)
 
@@ -140,7 +144,7 @@
 
 --------------------------------------------------------------------------------
 
-# 先决条件
+# 必要条件
 
    * JDK 1.8+
 
@@ -148,13 +152,13 @@
 
 # 关于
 
-Soul 已在我们的生产环境中使用，它的性能和灵活性使我们用起来很酷。
+ShenYu 已经被很多公司广泛使用在越来越多的业务系统，它能以高性能和灵活性让我们方便快捷的集成自己的服务和 API 。
 
-在双 11 中，我们部署了 6 个集群，这些集群支持了我们的大量业务。
+在中国的双 11 购物狂欢节中，ShenYu集群成功支撑了海量的互联网业务。
 
 --------------------------------------------------------------------------------
 
-# 文档& 网站
+# 文档 & 网站
 
 [![EN doc](https://img.shields.io/badge/document-English-blue.svg)](https://dromara.org/projects/soul/overview)
 [![CN doc](https://img.shields.io/badge/document-Chinese-blue.svg)](https://dromara.org/zh/projects/soul/overview)
@@ -167,9 +171,15 @@ Soul 已在我们的生产环境中使用，它的性能和灵活性使我们用
 
 --------------------------------------------------------------------------------
 
+# Gitee stars趋势
+
+[![Giteye chart](https://chart.giteye.net/gitee/dromara/soul/UZUPQEPC.png)](https://giteye.net/chart/UZUPQEPC)
+
+--------------------------------------------------------------------------------
+
 # 目前已知用户
 
-为了便于登记，欢迎已经使用了 Soul 的公司在 [https://github.com/Dromara/soul/issues/68](https://github.com/Dromara/soul/issues/68) 注册。（仅适用于开源用户）
+为了便于登记，欢迎已经使用了 ShenYu 的公司在 [https://github.com/Dromara/soul/issues/68](https://github.com/Dromara/soul/issues/68) 注册。（仅适用于开源用户）
 
 <table>
   <tbody>
@@ -220,27 +230,30 @@ Soul 已在我们的生产环境中使用，它的性能和灵活性使我们用
       <td><img src="https://yu199195.github.io/images/soul/users/anka.png"  width="1800" height="90" alt="anka"/>
     </tr>
   </tbody>     
-</table>
-
-
-# 支持
-
-<table>
-  <thead>
-    <th>微信公众号</th>
-    <th>QQ 交流群</th>
-    <th>芋道源码</th>
-    <th>JetBrains</th>
-  </thead>
   <tbody>
     <tr>
-      <td><img src="https://yu199195.github.io/images/public.jpg"   alt="微信公众号"/>
-      <td><img src="https://yu199195.github.io/images/soul-qq.png"  alt="QQ 交流群"/>
-      <td><img src="http://www.iocoder.cn/images/common/erweima.jpg"  alt="芋道源码"/>
-      <td><img src="https://yu199195.github.io/images/jetbrains.svg"  alt="JetBrains"/>
+      <td><img src="https://dromara.org/img/users/jd_logo.png"  width="1800" height="90" alt="jd"/>
+      <td><img src="https://yu199195.github.io/images/soul/users/minglamp.jpeg"  width="1800" height="90" alt="minglamp"/>
+      <td><img src="https://yu199195.github.io/images/soul/users/webuy.jpg"  width="1800" height="90" alt="webuy"/>
+      <td><img src="https://dromara.org/img/users/cass.png"  width="1800" height="90" alt="cass"/>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td><img src="https://dromara.org/img/users/songguo.png"  width="1800" height="90" alt="songguo"/>
+      <td><img src="https://dromara.org/img/users/lianlian.png"  width="1800" height="90" alt="lianlian"/>
+      <td><img src="https://dromara.org/img/users/dasouche.png"  width="1800" height="90" alt="dasouche"/>
+      <td><img src="https://dromara.org/img/users/weimai.png"  width="1800" height="90" alt="weimai"/>
     </tr>
   </tbody>
 </table>
 
+#贡献者列表
 
+`ShenYu` 遵循 `Apache-2.0` 开源协议，欢迎大家提交 `PR` 或 `Issue`。
 
+如果要为项目做出贡献，请查看 [贡献指南](https://dromara.org/zh/projects/soul/contributor/e)。
+
+感谢每一位为 `ShenYu` 贡献代码的朋友。
+
+[![Giteye chart](https://chart.giteye.net/gitee/dromara/soul/2ZKY3P9W.png)](https://giteye.net/chart/2ZKY3P9W)
